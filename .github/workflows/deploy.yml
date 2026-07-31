@@ -1,0 +1,56 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Позволяет запустить публикацию вручную из вкладки Actions
+  workflow_dispatch:
+
+# Права для этого процесса: только чтение кода и публикация в Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Не публиковать две сборки одновременно
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Скачать код
+        uses: actions/checkout@v4
+
+      - name: Поставить Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Подготовить Pages
+        uses: actions/configure-pages@v5
+
+      - name: Установить зависимости строго по package-lock.json
+        run: npm ci
+
+      - name: Собрать сайт в папку out/
+        run: npm run build
+
+      - name: Передать собранное на публикацию
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Опубликовать
+        id: deployment
+        uses: actions/deploy-pages@v4
