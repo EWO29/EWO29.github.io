@@ -1,11 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
 
-// Заглушки. Заменить на реальные данные компании перед демо.
-const COMPANY = "ТрубДемо";
-const CITY = "Москва";
-const PHONE = "8 800 000-00-00";
-const PHONE_HREF = "tel:+78000000000";
-const EMAIL = "info@trubdemo.ru";
+const COMPANY = "ЭМК ПрайМетХолдинг";
+const CITY = "Екатеринбург";
+const PHONE_FREE = "+7 800 250-03-23";
+const PHONE_FREE_HREF = "tel:+78002500323";
+const PHONE_CITY = "+7 343 287-77-34";
+const PHONE_CITY_HREF = "tel:+73432877734";
+const EMAIL = "emk-met@mail.ru";
 
 export default function Header() {
   return (
@@ -34,33 +36,60 @@ export default function Header() {
       </div>
 
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-        <Link href="/" className="group">
-          <div className="text-xl font-semibold tracking-tight text-zinc-900">
-            {COMPANY}
-          </div>
-          <div className="text-sm text-zinc-500">
-            Металлопрокат и трубы оптом
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/logo.jpg"
+            alt={COMPANY}
+            width={44}
+            height={47}
+            priority
+            className="h-11 w-auto"
+          />
+          <div>
+            <div className="text-xl font-semibold tracking-tight text-zinc-900">
+              {COMPANY}
+            </div>
+            <div className="text-sm text-zinc-500">
+              Металлопрокат и трубы оптом
+            </div>
           </div>
         </Link>
 
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
           <div>
             <a
-              href={PHONE_HREF}
+              href={PHONE_FREE_HREF}
               className="block text-lg font-semibold tracking-tight text-zinc-900"
             >
-              {PHONE}
+              {PHONE_FREE}
             </a>
-            <div className="text-xs text-zinc-500">
+            <a
+              href={PHONE_CITY_HREF}
+              className="block text-sm text-zinc-600 transition-colors hover:text-zinc-900"
+            >
+              {PHONE_CITY}
+            </a>
+            <div className="mt-0.5 text-xs text-zinc-500">
               Звонок по России бесплатный
             </div>
           </div>
           <button
             type="button"
-            className="rounded bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-700"
+            className="rounded bg-brand-mid px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
           >
             Заказать звонок
           </button>
+        </div>
+      </div>
+
+      <div className="bg-brand-dark">
+        <div className="mx-auto max-w-6xl px-4">
+          <Link
+            href="/catalog"
+            className="inline-block py-3.5 text-base font-medium text-white underline-offset-8 hover:underline"
+          >
+            Каталог
+          </Link>
         </div>
       </div>
     </header>
