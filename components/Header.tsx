@@ -1,13 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-
-const COMPANY = "ЭМК ПрайМетХолдинг";
-const CITY = "Екатеринбург";
-const PHONE_FREE = "+7 800 250-03-23";
-const PHONE_FREE_HREF = "tel:+78002500323";
-const PHONE_CITY = "+7 343 287-77-34";
-const PHONE_CITY_HREF = "tel:+73432877734";
-const EMAIL = "emk-met@mail.ru";
+import RequestButton from "@/components/RequestButton";
+import { COMPANY } from "@/data/company";
 
 export default function Header() {
   return (
@@ -20,16 +14,16 @@ export default function Header() {
           >
             Ваш город:{" "}
             <span className="font-medium text-zinc-900 underline decoration-dotted underline-offset-4">
-              {CITY}
+              {COMPANY.city}
             </span>
           </button>
           <div className="flex items-center gap-6">
-            <span className="hidden sm:inline">Пн—Пт 9:00—18:00</span>
+            <span className="hidden sm:inline">{COMPANY.workHours}</span>
             <a
-              href={`mailto:${EMAIL}`}
+              href={`mailto:${COMPANY.email}`}
               className="transition-colors hover:text-zinc-900"
             >
-              {EMAIL}
+              {COMPANY.email}
             </a>
           </div>
         </div>
@@ -39,7 +33,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo.jpg"
-            alt={COMPANY}
+            alt={COMPANY.name}
             width={44}
             height={47}
             priority
@@ -47,38 +41,31 @@ export default function Header() {
           />
           <div>
             <div className="text-xl font-semibold tracking-tight text-zinc-900">
-              {COMPANY}
+              {COMPANY.name}
             </div>
-            <div className="text-sm text-zinc-500">
-              Металлопрокат и трубы оптом
-            </div>
+            <div className="text-sm text-zinc-500">{COMPANY.tagline}</div>
           </div>
         </Link>
 
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
           <div>
             <a
-              href={PHONE_FREE_HREF}
+              href={COMPANY.phoneFreeHref}
               className="block text-lg font-semibold tracking-tight text-zinc-900"
             >
-              {PHONE_FREE}
+              {COMPANY.phoneFree}
             </a>
             <a
-              href={PHONE_CITY_HREF}
+              href={COMPANY.phoneCityHref}
               className="block text-sm text-zinc-600 transition-colors hover:text-zinc-900"
             >
-              {PHONE_CITY}
+              {COMPANY.phoneCity}
             </a>
             <div className="mt-0.5 text-xs text-zinc-500">
               Звонок по России бесплатный
             </div>
           </div>
-          <button
-            type="button"
-            className="rounded bg-brand-mid px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
-          >
-            Заказать звонок
-          </button>
+          <RequestButton label="Заказать звонок" title="Заказать звонок" />
         </div>
       </div>
 

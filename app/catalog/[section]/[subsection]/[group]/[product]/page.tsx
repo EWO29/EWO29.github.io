@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import RequestButton from "@/components/RequestButton";
 import {
   allProductParams,
   findGroup,
@@ -116,12 +117,12 @@ export default async function ProductPage({ params }: { params: Params }) {
             </div>
             <div className="mt-1 text-sm text-zinc-500">за тонну</div>
 
-            <button
-              type="button"
-              className="mt-6 w-full rounded bg-brand-mid px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
-            >
-              Запросить цену
-            </button>
+            <RequestButton
+              label="Запросить цену"
+              title="Запросить цену"
+              subject={`${groupData.name} ${size} ${groupData.gost}`}
+              className="mt-6 w-full px-6 py-3"
+            />
 
             <p className="mt-4 text-sm leading-relaxed text-zinc-500">
               Отгрузка от одной тонны. Счёт выставляем по электронной почте

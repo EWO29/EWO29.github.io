@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RequestButton from "@/components/RequestButton";
 import { catalog } from "@/data/catalog";
 
 // Тексты — заглушки. Заменить на реальные перед демо.
@@ -39,12 +40,12 @@ export default function Home() {
         >
           Перейти в каталог
         </Link>
-        <button
-          type="button"
-          className="rounded border border-zinc-300 px-6 py-3 text-sm font-medium text-zinc-900 transition-colors hover:border-brand hover:text-brand-mid"
-        >
-          Запросить прайс-лист
-        </button>
+        <RequestButton
+          label="Запросить прайс-лист"
+          title="Запросить прайс-лист"
+          variant="secondary"
+          className="px-6 py-3"
+        />
       </div>
 
       <div className="mt-12 grid gap-4 sm:grid-cols-2">
