@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import RequestButton from "@/components/RequestButton";
 import { catalog } from "@/data/catalog";
@@ -25,26 +26,39 @@ const FEATURES = [
 export default function Home() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
-        Металлопрокат оптом со склада в Екатеринбурге
-      </h1>
-      <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600">
-        Оптовая торговля чёрным, цветным и нержавеющим металлопрокатом.
-        Производство металлоконструкций, поставка стройматериалов и
-        электрооборудования.
-      </p>
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <Link
-          href="/catalog"
-          className="rounded bg-brand-mid px-6 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-brand-dark"
-        >
-          Перейти в каталог
-        </Link>
-        <RequestButton
-          label="Запросить прайс-лист"
-          title="Запросить прайс-лист"
-          variant="secondary"
-          className="px-6 py-3"
+      <div className="grid items-center gap-10 lg:grid-cols-2">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+            Металлопрокат оптом со склада в Екатеринбурге
+          </h1>
+          <p className="mt-4 text-lg leading-relaxed text-zinc-600">
+            Оптовая торговля чёрным, цветным и нержавеющим металлопрокатом.
+            Производство металлоконструкций, поставка стройматериалов и
+            электрооборудования.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/catalog"
+              className="rounded bg-brand-mid px-6 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+            >
+              Перейти в каталог
+            </Link>
+            <RequestButton
+              label="Запросить прайс-лист"
+              title="Запросить прайс-лист"
+              variant="secondary"
+              className="px-6 py-3"
+            />
+          </div>
+        </div>
+
+        <Image
+          src="/warehouse.jpg"
+          alt="Стальные трубы на складском хранении"
+          width={1280}
+          height={720}
+          priority
+          className="w-full rounded"
         />
       </div>
 

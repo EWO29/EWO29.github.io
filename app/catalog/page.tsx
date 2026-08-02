@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { catalog } from "@/data/catalog";
@@ -17,6 +18,14 @@ export default function CatalogPage() {
       <h1 className="mt-4 text-3xl font-semibold tracking-tight text-zinc-900">
         Каталог
       </h1>
+
+      <Image
+        src="/pipes.jpg"
+        alt="Торцы стальных труб"
+        width={1254}
+        height={1254}
+        className="mt-6 aspect-video w-full rounded object-cover sm:aspect-[3/1]"
+      />
 
       <ul className="mt-8 grid gap-4 sm:grid-cols-2">
         {catalog.map((section) => (
