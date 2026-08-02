@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -7,8 +8,19 @@ import {
   findSection,
   findSubsection,
 } from "@/data/catalog";
+import { pageTitle } from "@/data/company";
 
 export const dynamicParams = false;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ section: string; subsection: string; group: string }>;
+}): Promise<Metadata> {
+  const { section, subsection, group } = await params;
+  const data = findGroup(section, subsection, group);
+  return data ? { title: pageTitle(`${data.name} ${data.gost}`) } : {};
+}
 
 export function generateStaticParams() {
   return allGroupParams();

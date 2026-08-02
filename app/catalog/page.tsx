@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { catalog } from "@/data/catalog";
+import { pageTitle } from "@/data/company";
 
 export const metadata = {
-  title: "Каталог — ЭМК ПрайМетХолдинг",
+  title: pageTitle("Каталог"),
 };
 
 export default function CatalogPage() {

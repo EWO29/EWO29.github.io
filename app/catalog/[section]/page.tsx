@@ -1,10 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { allSectionParams, findSection } from "@/data/catalog";
+import { pageTitle } from "@/data/company";
 
 // Обслуживаем только те адреса, которые перечислены ниже.
 export const dynamicParams = false;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ section: string }>;
+}): Promise<Metadata> {
+  const { section } = await params;
+  const data = findSection(section);
+  return data ? { title: pageTitle(data.name) } : {};
+}
 
 // Next вызывает это при сборке и строит по странице на каждый элемент списка.
 export function generateStaticParams() {

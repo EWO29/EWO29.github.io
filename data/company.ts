@@ -15,3 +15,8 @@ export const COMPANY = {
   email: "emk-met@mail.ru",
   workHours: "Пн—Пт 9:00—18:00",
 };
+
+/** Заголовок вкладки браузера: «Что-то — Название компании». */
+export function pageTitle(text: string) {
+  return `${text} — ${COMPANY.name}`;
+}

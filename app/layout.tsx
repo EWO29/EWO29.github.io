@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { COMPANY } from "@/data/company";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,7 +11,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "ЭМК ПрайМетХолдинг — металлопрокат и трубы оптом",
+  title: `${COMPANY.name} — металлопрокат и трубы оптом`,
   description:
     "Поставка стальных бесшовных труб со склада в Екатеринбурге. Отгрузка от одной тонны, резка в размер, доставка по России.",
   // Демо-версия: закрыта от поисковиков, чтобы не подменять собой

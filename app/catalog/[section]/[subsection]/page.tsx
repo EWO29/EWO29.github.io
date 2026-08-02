@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -6,8 +7,19 @@ import {
   findSection,
   findSubsection,
 } from "@/data/catalog";
+import { pageTitle } from "@/data/company";
 
 export const dynamicParams = false;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ section: string; subsection: string }>;
+}): Promise<Metadata> {
+  const { section, subsection } = await params;
+  const data = findSubsection(section, subsection);
+  return data ? { title: pageTitle(data.name) } : {};
+}
 
 export function generateStaticParams() {
   return allSubsectionParams();

@@ -9,6 +9,7 @@ import {
   findSection,
   findSubsection,
 } from "@/data/catalog";
+import { pageTitle } from "@/data/company";
 
 export const dynamicParams = false;
 
@@ -37,7 +38,9 @@ export async function generateMetadata({
   if (!groupData || !productData) return {};
 
   return {
-    title: `${groupData.name} ${productData.diameter}×${productData.wall} ${groupData.gost} — ЭМК ПрайМетХолдинг`,
+    title: pageTitle(
+      `${groupData.name} ${productData.diameter}×${productData.wall} ${groupData.gost}`,
+    ),
   };
 }
 

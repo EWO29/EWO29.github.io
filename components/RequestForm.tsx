@@ -19,7 +19,8 @@ export default function RequestForm({
   onClose,
 }: {
   subject?: string;
-  onClose: () => void;
+  /** Есть в модальном окне, нет на отдельной странице — закрывать там нечего. */
+  onClose?: () => void;
 }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -76,13 +77,15 @@ export default function RequestForm({
           Свяжемся с вами в рабочее время: {COMPANY.workHours}. Если вопрос
           срочный — звоните {COMPANY.phoneFree}.
         </p>
-        <button
-          type="button"
-          onClick={onClose}
-          className="mt-6 w-full rounded bg-brand-mid px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
-        >
-          Закрыть
-        </button>
+        {onClose && (
+          <button
+            type="button"
+            onClick={onClose}
+            className="mt-6 w-full rounded bg-brand-mid px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+          >
+            Закрыть
+          </button>
+        )}
       </div>
     );
   }

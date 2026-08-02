@@ -70,12 +70,18 @@ export default function Header() {
       </div>
 
       <div className="bg-brand-dark">
-        <div className="mx-auto max-w-6xl px-4">
+        <div className="mx-auto flex max-w-6xl gap-6 px-4">
           <Link
             href="/catalog"
             className="inline-block py-3.5 text-base font-medium text-white underline-offset-8 hover:underline"
           >
             Каталог
+          </Link>
+          <Link
+            href="/contacts"
+            className="inline-block py-3.5 text-base font-medium text-white underline-offset-8 hover:underline"
+          >
+            Контакты
           </Link>
         </div>
       </div>
